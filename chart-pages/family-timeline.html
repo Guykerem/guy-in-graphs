@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Family Timeline | Guy in Graphs</title>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background: #ffffff;
+      color: #333;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1 {
+      margin-bottom: 0.2rem;
+    }
+    p {
+      margin-top: 0;
+      font-style: italic;
+      color: #666;
+    }
+    .chart-container {
+      margin-top: 2rem;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 2rem;
+      text-decoration: none;
+      color: #0077cc;
+    }
+  </style>
+</head>
+<body>
+  <h1>Family Timeline</h1>
+  <p>Track how my family grew from 1993 to 2025, with key life events marked along the way.</p>
+
+  <div class="chart-container" id="chart-full"></div>
+
+  <a href="../index.html" class="back-link">← Back to gallery</a>
+
+  <script>
+    vegaEmbed('#chart-full', '../charts/family-timeline.json', {
+      actions: true
+    });
+  </script>
+</body>
+</html>
