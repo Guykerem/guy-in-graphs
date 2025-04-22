@@ -1,0 +1,83 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Family size over time with life events shown as tooltips",
+  "width": 700,
+  "height": 400,
+  "data": {
+    "values": [
+      {"year": 1993, "members": 3, "event": "I am born!"},
+      {"year": 1994, "members": 3},
+      {"year": 1995, "members": 3},
+      {"year": 1996, "members": 4, "event": "Noa is born"},
+      {"year": 1997, "members": 4},
+      {"year": 1998, "members": 4},
+      {"year": 1999, "members": 4},
+      {"year": 2000, "members": 5, "event": "Aviv is born"},
+      {"year": 2001, "members": 5},
+      {"year": 2002, "members": 5},
+      {"year": 2003, "members": 5},
+      {"year": 2004, "members": 5},
+      {"year": 2005, "members": 5},
+      {"year": 2006, "members": 6, "event": "Rona is born"},
+      {"year": 2007, "members": 6},
+      {"year": 2008, "members": 6},
+      {"year": 2009, "members": 6},
+      {"year": 2010, "members": 6},
+      {"year": 2011, "members": 6},
+      {"year": 2012, "members": 6},
+      {"year": 2013, "members": 6},
+      {"year": 2014, "members": 6},
+      {"year": 2015, "members": 6},
+      {"year": 2016, "members": 6},
+      {"year": 2017, "members": 6},
+      {"year": 2018, "members": 6},
+      {"year": 2019, "members": 6},
+      {"year": 2020, "members": 6},
+      {"year": 2021, "members": 7, "event": "Married Noga"},
+      {"year": 2022, "members": 7},
+      {"year": 2023, "members": 8, "event": "Mia is born"}
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "interpolate": "monotone",
+        "strokeWidth": 3,
+        "color": "#1f77b4"
+      },
+      "encoding": {
+        "x": {"field": "year", "type": "ordinal", "title": "Year"},
+        "y": {"field": "members", "type": "quantitative", "title": "Family Members"}
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 60,
+        "color": "#1f77b4"
+      },
+      "encoding": {
+        "x": {"field": "year", "type": "ordinal"},
+        "y": {"field": "members", "type": "quantitative"},
+        "tooltip": [
+          {"field": "year", "type": "ordinal", "title": "Year"},
+          {"field": "members", "type": "quantitative", "title": "Family Members"},
+          {"field": "event", "type": "nominal", "title": "Event"}
+        ]
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "grid": false,
+      "labelFont": "Inter",
+      "titleFont": "Inter",
+      "labelColor": "#555",
+      "titleColor": "#222"
+    },
+    "view": {"stroke": "transparent"},
+    "background": "#ffffff"
+  }
+}
