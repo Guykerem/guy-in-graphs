@@ -1,80 +1,90 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "World map showing countries visited with color gradient based on first visit year",
   "width": 800,
   "height": 500,
-  "data": {
-    "url": "https://vega.github.io/vega/data/world-110m.json",
-    "format": {
-      "type": "topojson",
-      "feature": "countries"
-    }
-  },
-  "transform": [
-    {
-      "lookup": "id",
-      "from": {
-        "data": {
-          "values": [
-            {"country": "Egypt", "first_visit": 2000, "all_visits": "2000"},
-            {"country": "United States", "first_visit": 1999, "all_visits": "1999, 2002, 2017"},
-            {"country": "Netherlands", "first_visit": 2001, "all_visits": "2001, 2002, 2003, 2004, 2017"},
-            {"country": "Italy", "first_visit": 2004, "all_visits": "2004, 2014, 2018, 2022"},
-            {"country": "Germany", "first_visit": 2010, "all_visits": "2010, 2016, 2017, 2023"},
-            {"country": "France", "first_visit": 2003, "all_visits": "2003, 2016"},
-            {"country": "United Kingdom", "first_visit": 2002, "all_visits": "2002, 2017, 2024"},
-            {"country": "Denmark", "first_visit": 2003, "all_visits": "2003"},
-            {"country": "Thailand", "first_visit": 2004, "all_visits": "2004, 2022"},
-            {"country": "Costa Rica", "first_visit": 2004, "all_visits": "2004, 2017"},
-            {"country": "Austria", "first_visit": 2010, "all_visits": "2010"},
-            {"country": "Switzerland", "first_visit": 2019, "all_visits": "2019, 2021, 2025"},
-            {"country": "Czech Republic", "first_visit": 2017, "all_visits": "2017"},
-            {"country": "Colombia", "first_visit": 2017, "all_visits": "2017"},
-            {"country": "Nicaragua", "first_visit": 2017, "all_visits": "2017"},
-            {"country": "Guatemala", "first_visit": 2017, "all_visits": "2017"},
-            {"country": "Canada", "first_visit": 2017, "all_visits": "2017"},
-            {"country": "United Arab Emirates", "first_visit": 2023, "all_visits": "2023"}
-          ]
-        },
-        "key": "country",
-        "fields": ["first_visit", "all_visits"]
-      }
-    }
-  ],
+  "title": "Countries Visited by Year",
   "projection": {
     "type": "equalEarth"
   },
-  "mark": {
-    "type": "geoshape",
-    "stroke": "white",
-    "strokeWidth": 0.5
-  },
-  "encoding": {
-    "color": {
-      "field": "first_visit",
-      "type": "quantitative",
-      "scale": {
-        "domain": [1993, 2025],
-        "range": ["#ff0000", "#800080"],
-        "type": "linear"
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/vega/vega-datasets/master/data/world-110m.json",
+        "format": {
+          "type": "topojson",
+          "feature": "countries"
+        }
       },
-      "condition": {
-        "test": "datum.first_visit != null",
-        "value": "#e0e0e0"
+      "transform": [
+        {
+          "lookup": "id",
+          "from": {
+            "data": {
+              "values": [
+                {"id": 818, "country": "Egypt", "first_visit": 2000, "all_visits": "2000"},
+                {"id": 840, "country": "United States", "first_visit": 1999, "all_visits": "1999, 2002, 2017"},
+                {"id": 528, "country": "Netherlands", "first_visit": 2001, "all_visits": "2001, 2002, 2003, 2004, 2017"},
+                {"id": 380, "country": "Italy", "first_visit": 2004, "all_visits": "2004, 2014, 2018, 2022"},
+                {"id": 276, "country": "Germany", "first_visit": 2010, "all_visits": "2010, 2016, 2017, 2023"},
+                {"id": 250, "country": "France", "first_visit": 2003, "all_visits": "2003, 2016"},
+                {"id": 826, "country": "United Kingdom", "first_visit": 2002, "all_visits": "2002, 2017, 2024"},
+                {"id": 208, "country": "Denmark", "first_visit": 2003, "all_visits": "2003"},
+                {"id": 764, "country": "Thailand", "first_visit": 2004, "all_visits": "2004, 2022"},
+                {"id": 188, "country": "Costa Rica", "first_visit": 2004, "all_visits": "2004, 2017"},
+                {"id": 40, "country": "Austria", "first_visit": 2010, "all_visits": "2010"},
+                {"id": 756, "country": "Switzerland", "first_visit": 2019, "all_visits": "2019, 2021, 2025"},
+                {"id": 203, "country": "Czech Republic", "first_visit": 2017, "all_visits": "2017"},
+                {"id": 170, "country": "Colombia", "first_visit": 2017, "all_visits": "2017"},
+                {"id": 558, "country": "Nicaragua", "first_visit": 2017, "all_visits": "2017"},
+                {"id": 320, "country": "Guatemala", "first_visit": 2017, "all_visits": "2017"},
+                {"id": 124, "country": "Canada", "first_visit": 2017, "all_visits": "2017"},
+                {"id": 784, "country": "United Arab Emirates", "first_visit": 2023, "all_visits": "2023"}
+              ]
+            },
+            "key": "id"
+          },
+          "as": ["visited"]
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "white",
+        "strokeWidth": 0.5
+      },
+      "encoding": {
+        "color": {
+          "field": "visited.first_visit",
+          "type": "quantitative",
+          "scale": {
+            "domain": [1999, 2025],
+            "range": ["#ff0000", "#800080"],
+            "type": "linear"
+          },
+          "legend": {
+            "title": "First Visit Year",
+            "format": "d"
+          }
+        },
+        "fillOpacity": {
+          "condition": {
+            "test": "datum.visited != null",
+            "value": 1
+          },
+          "value": 0.2
+        },
+        "tooltip": [
+          {"field": "visited.country", "type": "nominal", "title": "Country"},
+          {"field": "visited.all_visits", "type": "nominal", "title": "Years Visited"}
+        ]
       }
-    },
-    "tooltip": [
-      {"field": "properties.name", "type": "nominal", "title": "Country"},
-      {"field": "all_visits", "type": "nominal", "title": "Years Visited"}
-    ]
-  },
+    }
+  ],
   "config": {
     "view": {"stroke": null},
-    "background": "#ffffff",
-    "title": {
-      "fontSize": 20,
-      "font": "Helvetica Neue, sans-serif",
-      "color": "#222"
+    "legend": {
+      "labelFont": "Helvetica Neue, sans-serif",
+      "titleFont": "Helvetica Neue, sans-serif",
+      "orient": "right"
     }
   }
 } 
