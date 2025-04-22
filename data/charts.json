@@ -1,0 +1,9 @@
+[
+    {
+      "id": "family-timeline",
+      "title": "Family Timeline",
+      "description": "How our family grew from 1993 to 2023, with key life events.",
+      "spec": "charts/family-timeline.json",
+      "thumb": "thumbs/family-timeline.png"
+    }
+  ]
