@@ -1,109 +1,120 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Family size over time with life events shown as labels",
+  "title": {
+    "text": "Family Timeline",
+    "subtitle": "Growth of my family from 1993 to 2023 with key events",
+    "fontSize": 20,
+    "subtitleFontSize": 14,
+    "font": "Helvetica Neue, sans-serif",
+    "anchor": "start"
+  },
   "width": 800,
-  "height": 500,
+  "height": 400,
+  "padding": 10,
   "data": {
     "values": [
-      {"year": 1993, "members": 3, "event": "I am born!"},
-      {"year": 1994, "members": 3},
-      {"year": 1995, "members": 3},
-      {"year": 1996, "members": 4, "event": "Noa is born"},
-      {"year": 1997, "members": 4},
-      {"year": 1998, "members": 4},
-      {"year": 1999, "members": 4},
-      {"year": 2000, "members": 5, "event": "Aviv is born"},
-      {"year": 2001, "members": 5},
-      {"year": 2002, "members": 5},
-      {"year": 2003, "members": 5},
-      {"year": 2004, "members": 5},
-      {"year": 2005, "members": 5},
-      {"year": 2006, "members": 6, "event": "Rona is born"},
-      {"year": 2007, "members": 6},
-      {"year": 2008, "members": 6},
-      {"year": 2009, "members": 6},
-      {"year": 2010, "members": 6},
-      {"year": 2011, "members": 6},
-      {"year": 2012, "members": 6},
-      {"year": 2013, "members": 6},
-      {"year": 2014, "members": 6},
-      {"year": 2015, "members": 6},
-      {"year": 2016, "members": 6},
-      {"year": 2017, "members": 6},
-      {"year": 2018, "members": 6},
-      {"year": 2019, "members": 6},
-      {"year": 2020, "members": 6},
-      {"year": 2021, "members": 7, "event": "Married Noga"},
-      {"year": 2022, "members": 7},
-      {"year": 2023, "members": 8, "event": "Mia is born"},
-      {"year": 2024, "members": 8},
-      {"year": 2025, "members": 8}
+      { "year": "1993", "family_size": 3, "event": "I am born!" },
+      { "year": "1994", "family_size": 3 },
+      { "year": "1995", "family_size": 3 },
+      { "year": "1996", "family_size": 4, "event": "Noa is born" },
+      { "year": "1997", "family_size": 4 },
+      { "year": "1998", "family_size": 4 },
+      { "year": "1999", "family_size": 4 },
+      { "year": "2000", "family_size": 5, "event": "Aviv is born" },
+      { "year": "2001", "family_size": 5 },
+      { "year": "2002", "family_size": 5 },
+      { "year": "2003", "family_size": 5 },
+      { "year": "2004", "family_size": 5 },
+      { "year": "2005", "family_size": 5 },
+      { "year": "2006", "family_size": 6, "event": "Rona is born" },
+      { "year": "2007", "family_size": 6 },
+      { "year": "2008", "family_size": 6 },
+      { "year": "2009", "family_size": 6 },
+      { "year": "2010", "family_size": 6 },
+      { "year": "2011", "family_size": 6 },
+      { "year": "2012", "family_size": 6 },
+      { "year": "2013", "family_size": 6 },
+      { "year": "2014", "family_size": 6 },
+      { "year": "2015", "family_size": 6 },
+      { "year": "2016", "family_size": 6 },
+      { "year": "2017", "family_size": 6 },
+      { "year": "2018", "family_size": 6 },
+      { "year": "2019", "family_size": 6 },
+      { "year": "2020", "family_size": 6 },
+      { "year": "2021", "family_size": 7, "event": "Married Noa" },
+      { "year": "2022", "family_size": 7 },
+      { "year": "2023", "family_size": 8, "event": "Mia is born" }
     ]
   },
   "layer": [
     {
       "mark": {
         "type": "line",
-        "interpolate": "monotone",
-        "strokeWidth": 4,
-        "color": "#2c3e50"
+        "interpolate": "step-after",
+        "strokeWidth": 2,
+        "color": "#2f4b7c"
       },
       "encoding": {
-        "x": {"field": "year", "type": "ordinal", "title": "Year"},
-        "y": {"field": "members", "type": "quantitative", "title": "Family Members"}
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "axis": {
+            "labelAngle": -45,
+            "labelFontSize": 11,
+            "tickCount": 10,
+            "grid": false
+          }
+        },
+        "y": {
+          "field": "family_size",
+          "type": "quantitative",
+          "axis": {
+            "title": "Family Members",
+            "grid": true,
+            "gridColor": "#eee",
+            "titleFontSize": 14,
+            "labelFontSize": 11
+          }
+        }
       }
     },
     {
       "mark": {
         "type": "point",
         "filled": true,
-        "size": 80,
-        "color": "#2c3e50"
+        "color": "#f95d6a",
+        "size": 60
       },
       "encoding": {
-        "x": {"field": "year", "type": "ordinal"},
-        "y": {"field": "members", "type": "quantitative"},
-        "opacity": {
-          "condition": {"test": "datum.event != null", "value": 1},
-          "value": 0.3
-        }
+        "x": { "field": "year", "type": "ordinal" },
+        "y": { "field": "family_size", "type": "quantitative" }
       }
     },
     {
+      "transform": [
+        { "filter": "datum.event != null" }
+      ],
       "mark": {
         "type": "text",
-        "dy": -15,
-        "fontSize": 14,
-        "fontWeight": "bold",
-        "color": "#2c3e50"
+        "align": "left",
+        "baseline": "middle",
+        "dx": 5,
+        "dy": -10,
+        "fontSize": 12,
+        "color": "#333"
       },
       "encoding": {
-        "x": {"field": "year", "type": "ordinal"},
-        "y": {"field": "members", "type": "quantitative"},
-        "text": {"field": "event", "type": "nominal"},
-        "opacity": {
-          "condition": {"test": "datum.event != null", "value": 1},
-          "value": 0
-        }
+        "x": { "field": "year", "type": "ordinal" },
+        "y": { "field": "family_size", "type": "quantitative" },
+        "text": { "field": "event", "type": "nominal" }
       }
     }
   ],
   "config": {
     "axis": {
-      "grid": false,
-      "labelFont": "Inter",
-      "titleFont": "Inter",
-      "labelColor": "#555",
-      "titleColor": "#222",
-      "labelFontSize": 14,
-      "titleFontSize": 16
+      "labelFont": "Helvetica Neue, sans-serif",
+      "titleFont": "Helvetica Neue, sans-serif"
     },
-    "view": {"stroke": "transparent"},
-    "background": "#ffffff",
-    "title": {
-      "fontSize": 20,
-      "font": "Inter",
-      "color": "#222"
-    }
+    "view": { "stroke": "transparent" }
   }
 }
