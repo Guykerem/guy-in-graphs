@@ -12,15 +12,25 @@
   "data": {
     "values": [
       {"excitement": 0, "volume": 4},
+      {"excitement": 0.5, "volume": 4},
       {"excitement": 1, "volume": 4},
+      {"excitement": 1.5, "volume": 4},
       {"excitement": 2, "volume": 4},
+      {"excitement": 2.5, "volume": 4},
       {"excitement": 3, "volume": 4},
+      {"excitement": 3.5, "volume": 4.25},
       {"excitement": 4, "volume": 4.5},
+      {"excitement": 4.5, "volume": 4.875},
       {"excitement": 5, "volume": 5.25},
+      {"excitement": 5.5, "volume": 6.125},
       {"excitement": 6, "volume": 7},
+      {"excitement": 6.5, "volume": 7.25},
       {"excitement": 7, "volume": 7.5},
+      {"excitement": 7.5, "volume": 7.75},
       {"excitement": 8, "volume": 8},
+      {"excitement": 8.5, "volume": 7.25},
       {"excitement": 9, "volume": 6.5},
+      {"excitement": 9.5, "volume": 5.75},
       {"excitement": 10, "volume": 5}
     ]
   },
@@ -28,7 +38,7 @@
     {
       "mark": {
         "type": "line",
-        "point": true,
+        "interpolate": "monotone",
         "strokeWidth": 3,
         "color": "#2f4b7c",
         "strokeCap": "round"
@@ -64,14 +74,15 @@
           "scale": {
             "domain": [0, 10]
           }
-        },
-        "tooltip": [
-          {"field": "excitement", "type": "quantitative", "title": "Excitement Level"},
-          {"field": "volume", "type": "quantitative", "title": "Speaking Volume"}
-        ]
+        }
       }
     },
     {
+      "transform": [
+        {
+          "filter": "datum.excitement % 1 == 0"
+        }
+      ],
       "mark": {
         "type": "point",
         "size": 100,
@@ -80,7 +91,11 @@
       },
       "encoding": {
         "x": {"field": "excitement", "type": "quantitative"},
-        "y": {"field": "volume", "type": "quantitative"}
+        "y": {"field": "volume", "type": "quantitative"},
+        "tooltip": [
+          {"field": "excitement", "type": "quantitative", "title": "Excitement Level"},
+          {"field": "volume", "type": "quantitative", "title": "Speaking Volume"}
+        ]
       }
     }
   ],
