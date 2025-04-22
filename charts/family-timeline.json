@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Family size over time with life events shown as tooltips",
+  "description": "Family size over time with life events shown as labels",
   "width": 800,
   "height": 500,
   "data": {
@@ -63,14 +63,27 @@
       "encoding": {
         "x": {"field": "year", "type": "ordinal"},
         "y": {"field": "members", "type": "quantitative"},
-        "tooltip": [
-          {"field": "year", "type": "ordinal", "title": "Year"},
-          {"field": "members", "type": "quantitative", "title": "Family Members"},
-          {"field": "event", "type": "nominal", "title": "Event"}
-        ],
         "opacity": {
           "condition": {"test": "datum.event != null", "value": 1},
           "value": 0.3
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": -15,
+        "fontSize": 14,
+        "fontWeight": "bold",
+        "color": "#2c3e50"
+      },
+      "encoding": {
+        "x": {"field": "year", "type": "ordinal"},
+        "y": {"field": "members", "type": "quantitative"},
+        "text": {"field": "event", "type": "nominal"},
+        "opacity": {
+          "condition": {"test": "datum.event != null", "value": 1},
+          "value": 0
         }
       }
     }
