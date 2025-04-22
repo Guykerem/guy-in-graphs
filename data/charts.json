@@ -5,5 +5,12 @@
       "description": "How our family grew from 1993 to 2023, with key life events.",
       "spec": "charts/family-timeline.json",
       "thumb": "thumbs/family-timeline.png"
+    },
+    {
+      "id": "travel-map",
+      "title": "Travel Map",
+      "description": "Countries I've visited, colored by year of first visit.",
+      "spec": "charts/travel-map.json",
+      "thumb": "thumbs/travel-map.png"
     }
   ]
