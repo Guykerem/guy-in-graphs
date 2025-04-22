@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Guy in Graphs</title>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; background: #f9f9f9; }
+    h1 { color: #333; }
+    .chart { margin-bottom: 4rem; }
+  </style>
+</head>
+<body>
+  <h1>Guy in Graphs</h1>
+
+  <div id="family-timeline" class="chart"></div>
+
+  <script type="text/javascript">
+    const spec = "charts/family-timeline.json"; // path to your Vega-Lite spec
+    vegaEmbed('#family-timeline', spec, { actions: false }).catch(console.error);
+  </script>
+</body>
+</html>
