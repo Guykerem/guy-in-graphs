@@ -12,5 +12,12 @@
       "description": "Countries I've visited, colored by year of first visit.",
       "spec": "charts/travel-map.json",
       "thumb": "thumbs/travel-map.png"
+    },
+    {
+      "id": "volume-excitement",
+      "title": "Excitement vs Volume",
+      "description": "How my speaking volume changes with my excitement level.",
+      "spec": "charts/volume-excitement.json",
+      "thumb": "thumbs/volume-excitement.png"
     }
   ]

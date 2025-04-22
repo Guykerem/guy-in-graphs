@@ -1,0 +1,94 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 600,
+  "height": 400,
+  "title": {
+    "text": "Relationship Between Excitement and Speaking Volume",
+    "fontSize": 20,
+    "font": "Helvetica Neue, sans-serif",
+    "anchor": "start",
+    "color": "#333"
+  },
+  "data": {
+    "values": [
+      {"excitement": 0, "volume": 4},
+      {"excitement": 1, "volume": 4},
+      {"excitement": 2, "volume": 4},
+      {"excitement": 3, "volume": 4},
+      {"excitement": 4, "volume": 4.5},
+      {"excitement": 5, "volume": 5.25},
+      {"excitement": 6, "volume": 7},
+      {"excitement": 7, "volume": 7.5},
+      {"excitement": 8, "volume": 8},
+      {"excitement": 9, "volume": 6.5},
+      {"excitement": 10, "volume": 5}
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "point": true,
+        "strokeWidth": 3,
+        "color": "#2f4b7c",
+        "strokeCap": "round"
+      },
+      "encoding": {
+        "x": {
+          "field": "excitement",
+          "type": "quantitative",
+          "title": "Excitement Level",
+          "axis": {
+            "tickCount": 11,
+            "grid": true,
+            "gridColor": "#eee",
+            "labelFont": "Helvetica Neue, sans-serif",
+            "titleFont": "Helvetica Neue, sans-serif",
+            "titleFontWeight": "normal"
+          },
+          "scale": {
+            "domain": [0, 10]
+          }
+        },
+        "y": {
+          "field": "volume",
+          "type": "quantitative",
+          "title": "Speaking Volume",
+          "axis": {
+            "grid": true,
+            "gridColor": "#eee",
+            "labelFont": "Helvetica Neue, sans-serif",
+            "titleFont": "Helvetica Neue, sans-serif",
+            "titleFontWeight": "normal"
+          },
+          "scale": {
+            "domain": [0, 10]
+          }
+        },
+        "tooltip": [
+          {"field": "excitement", "type": "quantitative", "title": "Excitement Level"},
+          {"field": "volume", "type": "quantitative", "title": "Speaking Volume"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "size": 100,
+        "filled": true,
+        "color": "#f95d6a"
+      },
+      "encoding": {
+        "x": {"field": "excitement", "type": "quantitative"},
+        "y": {"field": "volume", "type": "quantitative"}
+      }
+    }
+  ],
+  "config": {
+    "view": {"stroke": null},
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 14
+    }
+  }
+} 
