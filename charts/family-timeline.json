@@ -1,16 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "Family Timeline",
-    "subtitle": "Growth of my family from 1993 to 2023 with key events",
-    "fontSize": 20,
-    "subtitleFontSize": 14,
-    "font": "Helvetica Neue, sans-serif",
-    "anchor": "start"
-  },
   "width": 800,
   "height": 400,
-  "padding": 10,
+  "padding": 5,
   "data": {
     "values": [
       { "year": "1993", "family_size": 3, "event": "I am born!" },
@@ -43,7 +35,9 @@
       { "year": "2020", "family_size": 6 },
       { "year": "2021", "family_size": 7, "event": "Married Noa" },
       { "year": "2022", "family_size": 7 },
-      { "year": "2023", "family_size": 8, "event": "Mia is born" }
+      { "year": "2023", "family_size": 8, "event": "Mia is born" },
+      { "year": "2024", "family_size": 8 },
+      { "year": "2025", "family_size": 8 }
     ]
   },
   "layer": [
@@ -59,9 +53,9 @@
           "field": "year",
           "type": "ordinal",
           "axis": {
+            "title": "Year",
             "labelAngle": -45,
-            "labelFontSize": 11,
-            "tickCount": 10,
+            "tickCount": 12,
             "grid": false
           }
         },
@@ -70,15 +64,16 @@
           "type": "quantitative",
           "axis": {
             "title": "Family Members",
-            "grid": true,
             "gridColor": "#eee",
-            "titleFontSize": 14,
-            "labelFontSize": 11
+            "grid": true
           }
         }
       }
     },
     {
+      "transform": [
+        { "filter": "datum.event != null" }
+      ],
       "mark": {
         "type": "point",
         "filled": true,
@@ -87,34 +82,22 @@
       },
       "encoding": {
         "x": { "field": "year", "type": "ordinal" },
-        "y": { "field": "family_size", "type": "quantitative" }
-      }
-    },
-    {
-      "transform": [
-        { "filter": "datum.event != null" }
-      ],
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "baseline": "middle",
-        "dx": 5,
-        "dy": -10,
-        "fontSize": 12,
-        "color": "#333"
-      },
-      "encoding": {
-        "x": { "field": "year", "type": "ordinal" },
         "y": { "field": "family_size", "type": "quantitative" },
-        "text": { "field": "event", "type": "nominal" }
+        "tooltip": { "field": "event", "type": "nominal" }
       }
     }
   ],
   "config": {
     "axis": {
       "labelFont": "Helvetica Neue, sans-serif",
-      "titleFont": "Helvetica Neue, sans-serif"
+      "titleFont": "Helvetica Neue, sans-serif",
+      "labelFontSize": 11,
+      "titleFontSize": 13
     },
-    "view": { "stroke": "transparent" }
+    "view": { "stroke": "transparent" },
+    "style": {
+      "guide-label": { "fontSize": 11 },
+      "guide-title": { "fontSize": 13 }
+    }
   }
 }
