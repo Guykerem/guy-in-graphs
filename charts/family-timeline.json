@@ -2,6 +2,14 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 800,
   "height": 400,
+  "title": {
+    "text": "Family Timeline",
+    "fontSize": 24,
+    "font": "Helvetica Neue, sans-serif",
+    "anchor": "middle",
+    "color": "#333",
+    "offset": 20
+  },
   "padding": 5,
   "data": {
     "values": [

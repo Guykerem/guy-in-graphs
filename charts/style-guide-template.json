@@ -1,0 +1,87 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Chart Title Here",
+    "fontSize": 24,
+    "font": "Helvetica Neue, sans-serif",
+    "anchor": "middle",
+    "color": "#333",
+    "offset": 20
+  },
+  "width": 800,
+  "height": 400,
+  "padding": 20,
+  "data": {
+    "values": [
+      {"x": 1, "y": 28, "category": "A"},
+      {"x": 2, "y": 55, "category": "A"},
+      {"x": 3, "y": 43, "category": "A"},
+      {"x": 1, "y": 81, "category": "B"},
+      {"x": 2, "y": 53, "category": "B"},
+      {"x": 3, "y": 19, "category": "B"}
+    ]
+  },
+  "mark": {
+    "type": "line",
+    "strokeWidth": 4,
+    "strokeCap": "round",
+    "strokeJoin": "round"
+  },
+  "encoding": {
+    "x": {
+      "field": "x",
+      "type": "quantitative",
+      "title": "X Axis Title",
+      "axis": {
+        "grid": false,
+        "labelFont": "Helvetica Neue, sans-serif",
+        "titleFont": "Helvetica Neue, sans-serif",
+        "labelFontSize": 14,
+        "titleFontSize": 16,
+        "titlePadding": 15,
+        "labelPadding": 10,
+        "tickCount": 5
+      }
+    },
+    "y": {
+      "field": "y",
+      "type": "quantitative",
+      "title": "Y Axis Title",
+      "axis": {
+        "grid": true,
+        "gridColor": "#eee",
+        "labelFont": "Helvetica Neue, sans-serif",
+        "titleFont": "Helvetica Neue, sans-serif",
+        "labelFontSize": 14,
+        "titleFontSize": 16,
+        "titlePadding": 15,
+        "labelPadding": 10
+      }
+    },
+    "color": {
+      "field": "category",
+      "type": "nominal",
+      "scale": {
+        "range": ["#2f4b7c", "#f95d6a"]
+      },
+      "legend": {
+        "title": "Legend Title",
+        "orient": "right",
+        "labelFont": "Helvetica Neue, sans-serif",
+        "titleFont": "Helvetica Neue, sans-serif",
+        "labelFontSize": 12,
+        "titleFontSize": 14
+      }
+    }
+  },
+  "config": {
+    "view": {
+      "stroke": null,
+      "padding": 20
+    },
+    "axis": {
+      "domainColor": "#ddd",
+      "tickColor": "#ddd"
+    }
+  }
+} 
