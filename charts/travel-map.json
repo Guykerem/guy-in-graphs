@@ -47,6 +47,14 @@
       }
     }
   ],
+  "selection": {
+    "grid": {
+      "type": "interval",
+      "bind": "scales",
+      "translate": true,
+      "zoom": true
+    }
+  },
   "mark": {
     "type": "geoshape",
     "stroke": "#ccc",
