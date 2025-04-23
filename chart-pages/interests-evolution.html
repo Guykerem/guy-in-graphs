@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Interests Evolution | Guy in Graphs</title>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+      background: #ffffff;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1rem;
+      text-decoration: none;
+      color: #007acc;
+    }
+
+    #chart {
+      width: 100%;
+      height: 500px;
+      margin-top: 2rem;
+    }
+
+    p {
+      color: #666;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <a href="../index.html" class="back-link">← Back to gallery</a>
+  <h1>Evolution of Interests</h1>
+  <p>This visualization tracks how my main interests have evolved over time, showing the rise and fall of different passions and how they've intertwined throughout my life.</p>
+  <div id="chart"></div>
+
+  <script>
+    vegaEmbed('#chart', '../charts/interests-evolution.json', { actions: true });
+  </script>
+</body>
+</html> 
