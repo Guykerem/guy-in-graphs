@@ -17,37 +17,33 @@
   },
   "transform": [
     {
-      "calculate": "datum.id",
-      "as": "country"
-    },
-    {
-      "lookup": "country",
+      "lookup": "id",
       "from": {
         "data": {
           "values": [
-            {"id": "818", "name": "Egypt", "first_visit": 2000, "all_visits": "2000"},
-            {"id": "840", "name": "United States", "first_visit": 1999, "all_visits": "1999, 2002, 2017"},
-            {"id": "528", "name": "Netherlands", "first_visit": 2001, "all_visits": "2001, 2002, 2003, 2004, 2017"},
-            {"id": "380", "name": "Italy", "first_visit": 2004, "all_visits": "2004, 2014, 2018, 2022"},
-            {"id": "276", "name": "Germany", "first_visit": 2010, "all_visits": "2010, 2016, 2017, 2023"},
-            {"id": "250", "name": "France", "first_visit": 2003, "all_visits": "2003, 2016"},
-            {"id": "826", "name": "United Kingdom", "first_visit": 2002, "all_visits": "2002, 2017, 2024"},
-            {"id": "208", "name": "Denmark", "first_visit": 2003, "all_visits": "2003"},
-            {"id": "764", "name": "Thailand", "first_visit": 2004, "all_visits": "2004, 2022"},
-            {"id": "188", "name": "Costa Rica", "first_visit": 2004, "all_visits": "2004, 2017"},
-            {"id": "040", "name": "Austria", "first_visit": 2010, "all_visits": "2010"},
-            {"id": "756", "name": "Switzerland", "first_visit": 2019, "all_visits": "2019, 2021, 2025"},
-            {"id": "203", "name": "Czech Republic", "first_visit": 2017, "all_visits": "2017"},
-            {"id": "170", "name": "Colombia", "first_visit": 2017, "all_visits": "2017"},
-            {"id": "558", "name": "Nicaragua", "first_visit": 2017, "all_visits": "2017"},
-            {"id": "320", "name": "Guatemala", "first_visit": 2017, "all_visits": "2017"},
-            {"id": "124", "name": "Canada", "first_visit": 2017, "all_visits": "2017"},
-            {"id": "784", "name": "United Arab Emirates", "first_visit": 2023, "all_visits": "2023"},
-            {"id": "300", "name": "Greece", "first_visit": 2017, "all_visits": "2017, 2019, 2022"}
+            {"id": 818, "name": "Egypt", "first_visit": 2000, "all_visits": "2000", "first_year_name": "2000"},
+            {"id": 840, "name": "United States", "first_visit": 1999, "all_visits": "1999, 2002, 2017", "first_year_name": "1999"},
+            {"id": 528, "name": "Netherlands", "first_visit": 2001, "all_visits": "2001, 2002, 2003, 2004, 2017", "first_year_name": "2001"},
+            {"id": 380, "name": "Italy", "first_visit": 2004, "all_visits": "2004, 2014, 2018, 2022", "first_year_name": "2004"},
+            {"id": 276, "name": "Germany", "first_visit": 2010, "all_visits": "2010, 2016, 2017, 2023", "first_year_name": "2010"},
+            {"id": 250, "name": "France", "first_visit": 2003, "all_visits": "2003, 2016", "first_year_name": "2003"},
+            {"id": 826, "name": "United Kingdom", "first_visit": 2002, "all_visits": "2002, 2017, 2024", "first_year_name": "2002"},
+            {"id": 208, "name": "Denmark", "first_visit": 2003, "all_visits": "2003", "first_year_name": "2003"},
+            {"id": 764, "name": "Thailand", "first_visit": 2004, "all_visits": "2004, 2022", "first_year_name": "2004"},
+            {"id": 188, "name": "Costa Rica", "first_visit": 2004, "all_visits": "2004, 2017", "first_year_name": "2004"},
+            {"id": 40, "name": "Austria", "first_visit": 2010, "all_visits": "2010", "first_year_name": "2010"},
+            {"id": 756, "name": "Switzerland", "first_visit": 2019, "all_visits": "2019, 2021, 2025", "first_year_name": "2019"},
+            {"id": 203, "name": "Czech Republic", "first_visit": 2017, "all_visits": "2017", "first_year_name": "2017"},
+            {"id": 170, "name": "Colombia", "first_visit": 2017, "all_visits": "2017", "first_year_name": "2017"},
+            {"id": 558, "name": "Nicaragua", "first_visit": 2017, "all_visits": "2017", "first_year_name": "2017"},
+            {"id": 320, "name": "Guatemala", "first_visit": 2017, "all_visits": "2017", "first_year_name": "2017"},
+            {"id": 124, "name": "Canada", "first_visit": 2017, "all_visits": "2017", "first_year_name": "2017"},
+            {"id": 784, "name": "United Arab Emirates", "first_visit": 2023, "all_visits": "2023", "first_year_name": "2023"},
+            {"id": 300, "name": "Greece", "first_visit": 2017, "all_visits": "2017, 2019, 2022", "first_year_name": "2017"}
           ]
         },
         "key": "id",
-        "fields": ["name", "first_visit", "all_visits"]
+        "fields": ["name", "first_visit", "all_visits", "first_year_name"]
       }
     }
   ],
@@ -58,28 +54,21 @@
   },
   "encoding": {
     "fill": {
-      "condition": {
-        "test": "datum.first_visit == null",
-        "value": "#f0f0f0"
-      },
-      "field": "first_visit",
-      "type": "quantitative",
+      "field": "first_year_name",
+      "type": "nominal",
       "scale": {
-        "domain": [1993, 2025],
-        "range": ["#1f77b4", "#d62728"],
-        "type": "linear"
+        "domain": ["1999", "2000", "2001", "2002", "2003", "2004", "2010", "2017", "2019", "2023"],
+        "range": ["#1f77b4", "#aec7e8", "#ff7f0e", "#ffbb78", "#2ca02c", "#98df8a", "#d62728", "#ff9896", "#9467bd", "#c5b0d5"]
       },
       "legend": {
         "title": "First Visit Year",
-        "format": "d",
-        "orient": "right",
-        "gradientLength": 200,
-        "gradientThickness": 16
+        "orient": "right"
       }
     },
     "tooltip": [
       {"field": "name", "type": "nominal", "title": "Country"},
-      {"field": "all_visits", "type": "nominal", "title": "Years Visited"}
+      {"field": "first_visit", "type": "quantitative", "title": "First Visit"},
+      {"field": "all_visits", "type": "nominal", "title": "All Visits"}
     ]
   },
   "config": {
