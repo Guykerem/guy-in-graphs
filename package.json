@@ -1,0 +1,14 @@
+{
+  "name": "guy-in-graphs",
+  "version": "1.0.0",
+  "description": "A collection of personal data visualizations",
+  "scripts": {
+    "validate": "node scripts/validate-charts.js",
+    "validate-chart": "node scripts/validate-charts.js --chart"
+  },
+  "dependencies": {
+    "ajv": "^8.12.0",
+    "chalk": "^4.1.2",
+    "yargs": "^17.7.2"
+  }
+} 
