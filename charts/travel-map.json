@@ -61,27 +61,27 @@
       "type": "quantitative",
       "scale": {
         "domain": [1993, 2025],
-        "range": ["#FF0000", "#FF7F00", "#FFFF00", "#00FF00", "#0000FF", "#4B0082", "#8B00FF"],
+        "range": ["#1f77b4", "#d62728"],
         "type": "linear"
       },
       "legend": {
         "title": "First Visit Year",
-        "values": [1993, 2025],
         "format": "d",
-        "orient": "right"
+        "orient": "right",
+        "gradientLength": 200
       }
     },
     "fillOpacity": {
       "condition": {
         "test": "datum.first_visit != null",
-        "value": 0.8
+        "value": 1
       },
       "value": 1
     },
     "fill": {
       "condition": {
         "test": "datum.first_visit == null",
-        "value": "white"
+        "value": "#f0f0f0"
       }
     },
     "tooltip": [
@@ -93,7 +93,10 @@
     "view": {"stroke": null},
     "legend": {
       "labelFont": "Helvetica Neue, sans-serif",
-      "titleFont": "Helvetica Neue, sans-serif"
+      "titleFont": "Helvetica Neue, sans-serif",
+      "labelFontSize": 12,
+      "titleFontSize": 14,
+      "gradientThickness": 16
     }
   }
 } 
