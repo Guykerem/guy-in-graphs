@@ -52,7 +52,7 @@
   ],
   "mark": {
     "type": "geoshape",
-    "stroke": "#fff",
+    "stroke": "#ccc",
     "strokeWidth": 0.5
   },
   "encoding": {
@@ -61,7 +61,7 @@
       "type": "quantitative",
       "scale": {
         "domain": [1993, 2025],
-        "range": ["#ff0000", "#800080"],
+        "range": ["#FF0000", "#FF7F00", "#FFFF00", "#00FF00", "#0000FF", "#4B0082", "#8B00FF"],
         "type": "linear"
       },
       "legend": {
@@ -74,9 +74,15 @@
     "fillOpacity": {
       "condition": {
         "test": "datum.first_visit != null",
-        "value": 1
+        "value": 0.8
       },
-      "value": 0.2
+      "value": 1
+    },
+    "fill": {
+      "condition": {
+        "test": "datum.first_visit == null",
+        "value": "white"
+      }
     },
     "tooltip": [
       {"field": "name", "type": "nominal", "title": "Country"},

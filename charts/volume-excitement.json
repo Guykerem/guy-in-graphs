@@ -1,109 +1,116 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 600,
+  "width": 700,
   "height": 400,
   "title": {
     "text": "Relationship Between Excitement and Speaking Volume",
-    "fontSize": 20,
+    "fontSize": 24,
     "font": "Helvetica Neue, sans-serif",
     "anchor": "start",
-    "color": "#333"
+    "color": "#333",
+    "offset": 20
   },
   "data": {
     "values": [
       {"excitement": 0, "volume": 4},
+      {"excitement": 0.25, "volume": 4},
       {"excitement": 0.5, "volume": 4},
+      {"excitement": 0.75, "volume": 4},
       {"excitement": 1, "volume": 4},
+      {"excitement": 1.25, "volume": 4},
       {"excitement": 1.5, "volume": 4},
+      {"excitement": 1.75, "volume": 4},
       {"excitement": 2, "volume": 4},
+      {"excitement": 2.25, "volume": 4},
       {"excitement": 2.5, "volume": 4},
+      {"excitement": 2.75, "volume": 4},
       {"excitement": 3, "volume": 4},
+      {"excitement": 3.25, "volume": 4.125},
       {"excitement": 3.5, "volume": 4.25},
+      {"excitement": 3.75, "volume": 4.375},
       {"excitement": 4, "volume": 4.5},
+      {"excitement": 4.25, "volume": 4.6875},
       {"excitement": 4.5, "volume": 4.875},
+      {"excitement": 4.75, "volume": 5.0625},
       {"excitement": 5, "volume": 5.25},
+      {"excitement": 5.25, "volume": 5.6875},
       {"excitement": 5.5, "volume": 6.125},
+      {"excitement": 5.75, "volume": 6.5625},
       {"excitement": 6, "volume": 7},
+      {"excitement": 6.25, "volume": 7.125},
       {"excitement": 6.5, "volume": 7.25},
+      {"excitement": 6.75, "volume": 7.375},
       {"excitement": 7, "volume": 7.5},
+      {"excitement": 7.25, "volume": 7.625},
       {"excitement": 7.5, "volume": 7.75},
+      {"excitement": 7.75, "volume": 7.875},
       {"excitement": 8, "volume": 8},
+      {"excitement": 8.25, "volume": 7.625},
       {"excitement": 8.5, "volume": 7.25},
+      {"excitement": 8.75, "volume": 6.875},
       {"excitement": 9, "volume": 6.5},
+      {"excitement": 9.25, "volume": 6.125},
       {"excitement": 9.5, "volume": 5.75},
+      {"excitement": 9.75, "volume": 5.375},
       {"excitement": 10, "volume": 5}
     ]
   },
-  "layer": [
-    {
-      "mark": {
-        "type": "line",
-        "interpolate": "monotone",
-        "strokeWidth": 3,
-        "color": "#2f4b7c",
-        "strokeCap": "round"
+  "mark": {
+    "type": "line",
+    "interpolate": "basis",
+    "strokeWidth": 4,
+    "color": "#2f4b7c",
+    "strokeCap": "round",
+    "strokeJoin": "round"
+  },
+  "encoding": {
+    "x": {
+      "field": "excitement",
+      "type": "quantitative",
+      "title": "Excitement Level",
+      "axis": {
+        "grid": false,
+        "labelFont": "Helvetica Neue, sans-serif",
+        "titleFont": "Helvetica Neue, sans-serif",
+        "labelFontSize": 14,
+        "titleFontSize": 16,
+        "titlePadding": 15,
+        "labelPadding": 10
       },
-      "encoding": {
-        "x": {
-          "field": "excitement",
-          "type": "quantitative",
-          "title": "Excitement Level",
-          "axis": {
-            "tickCount": 11,
-            "grid": true,
-            "gridColor": "#eee",
-            "labelFont": "Helvetica Neue, sans-serif",
-            "titleFont": "Helvetica Neue, sans-serif",
-            "titleFontWeight": "normal"
-          },
-          "scale": {
-            "domain": [0, 10]
-          }
-        },
-        "y": {
-          "field": "volume",
-          "type": "quantitative",
-          "title": "Speaking Volume",
-          "axis": {
-            "grid": true,
-            "gridColor": "#eee",
-            "labelFont": "Helvetica Neue, sans-serif",
-            "titleFont": "Helvetica Neue, sans-serif",
-            "titleFontWeight": "normal"
-          },
-          "scale": {
-            "domain": [0, 10]
-          }
-        }
+      "scale": {
+        "domain": [0, 10]
       }
     },
-    {
-      "transform": [
-        {
-          "filter": "datum.excitement % 1 == 0"
-        }
-      ],
-      "mark": {
-        "type": "point",
-        "size": 100,
-        "filled": true,
-        "color": "#f95d6a"
+    "y": {
+      "field": "volume",
+      "type": "quantitative",
+      "title": "Speaking Volume",
+      "axis": {
+        "grid": false,
+        "labelFont": "Helvetica Neue, sans-serif",
+        "titleFont": "Helvetica Neue, sans-serif",
+        "labelFontSize": 14,
+        "titleFontSize": 16,
+        "titlePadding": 15,
+        "labelPadding": 10,
+        "orient": "left",
+        "titleAngle": 0,
+        "titleX": -50,
+        "titleY": -15
       },
-      "encoding": {
-        "x": {"field": "excitement", "type": "quantitative"},
-        "y": {"field": "volume", "type": "quantitative"},
-        "tooltip": [
-          {"field": "excitement", "type": "quantitative", "title": "Excitement Level"},
-          {"field": "volume", "type": "quantitative", "title": "Speaking Volume"}
-        ]
+      "scale": {
+        "domain": [0, 10]
       }
     }
-  ],
+  },
   "config": {
-    "view": {"stroke": null},
+    "view": {
+      "stroke": null,
+      "padding": 20
+    },
     "axis": {
-      "labelFontSize": 12,
-      "titleFontSize": 14
+      "domainColor": "#ddd",
+      "tickColor": "#ddd"
     }
   }
 } 
