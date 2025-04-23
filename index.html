@@ -3,80 +3,158 @@
 <head>
   <meta charset="UTF-8" />
   <title>Guy in Graphs</title>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Helvetica Neue', sans-serif;
+      margin: 0;
       padding: 2rem;
       background: #f5f5f5;
+      color: #333;
+    }
+
+    .header {
       text-align: center;
+      margin-bottom: 3rem;
+      padding: 1rem;
     }
 
     h1 {
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
+      color: #2f4b7c;
+    }
+
+    .subtitle {
+      font-style: italic;
+      color: #666;
+      margin-bottom: 2rem;
     }
 
     .gallery {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
       max-width: 1200px;
-      margin: auto;
+      margin: 0 auto;
     }
 
-    .chart-box {
+    .chart-container {
       background: white;
-      border-radius: 10px;
-      padding: 1rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-      transition: transform 0.2s ease;
-      text-align: left;
-    }
-
-    .chart-box:hover {
-      transform: scale(1.03);
-      background: #fffbe6;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 3rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
 
     .chart-title {
+      font-size: 1.5rem;
       font-weight: bold;
-      font-size: 1.1rem;
-      margin: 0.5rem 0;
+      margin-bottom: 1rem;
+      color: #2f4b7c;
     }
 
-    .chart-thumb {
+    .chart-description {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .chart {
       width: 100%;
-      height: 160px;
-      object-fit: cover;
-      border-radius: 6px;
+      height: 500px;
+      margin: 0 auto;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+
+      .chart-container {
+        padding: 1rem;
+      }
+
+      .chart {
+        height: 400px;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Guy in Graphs</h1>
-  <div class="gallery" id="gallery"></div>
+  <div class="header">
+    <h1>Guy in Graphs</h1>
+    <div class="subtitle">Life stories, in neat graphs.</div>
+  </div>
+
+  <div class="gallery">
+    <!-- Family Timeline -->
+    <div class="chart-container">
+      <div class="chart-title">Family Timeline</div>
+      <div class="chart-description">
+        How our family grew from 1993 to 2023, with key life events marked along the way.
+        Each step represents a new addition to our family story.
+      </div>
+      <div class="chart" id="family-timeline"></div>
+    </div>
+
+    <!-- Travel Map -->
+    <div class="chart-container">
+      <div class="chart-title">Travel Map</div>
+      <div class="chart-description">
+        A visual journey through the countries I've visited, with colors indicating the year
+        of first visit. Hover over countries to see all visits.
+      </div>
+      <div class="chart" id="travel-map"></div>
+    </div>
+
+    <!-- Volume vs Excitement -->
+    <div class="chart-container">
+      <div class="chart-title">Excitement vs Volume</div>
+      <div class="chart-description">
+        The fascinating relationship between my excitement level and speaking volume. 
+        Notice how the volume peaks at moderate excitement and then decreases at very high levels!
+      </div>
+      <div class="chart" id="volume-excitement"></div>
+    </div>
+
+    <!-- Interests Evolution -->
+    <div class="chart-container">
+      <div class="chart-title">Evolution of Interests</div>
+      <div class="chart-description">
+        How my main interests have evolved over time, showing the rise and fall of different
+        passions and how they've intertwined throughout my life.
+      </div>
+      <div class="chart" id="interests-evolution"></div>
+    </div>
+  </div>
 
   <script>
-    fetch('data/charts.json')
-      .then(res => res.json())
-      .then(charts => {
-        const gallery = document.getElementById('gallery');
-        charts.forEach(chart => {
-          const box = document.createElement('div');
-          box.className = 'chart-box';
-          box.innerHTML = `
-            <a href="chart-pages/${chart.id}.html">
-              <img src="${chart.thumb}" alt="${chart.title}" class="chart-thumb" />
-              <div class="chart-title">${chart.title}</div>
-            </a>
-          `;
-          gallery.appendChild(box);
-        });
-      });
+    // Load all charts
+    const charts = [
+      {
+        id: 'family-timeline',
+        spec: 'charts/family-timeline.json'
+      },
+      {
+        id: 'travel-map',
+        spec: 'charts/travel-map.json'
+      },
+      {
+        id: 'volume-excitement',
+        spec: 'charts/volume-excitement.json'
+      },
+      {
+        id: 'interests-evolution',
+        spec: 'charts/interests-evolution.json'
+      }
+    ];
+
+    // Embed each chart
+    charts.forEach(chart => {
+      vegaEmbed(`#${chart.id}`, chart.spec, {
+        actions: true,
+        defaultStyle: true
+      }).catch(console.error);
+    });
   </script>
 </body>
 </html>
