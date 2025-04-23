@@ -19,5 +19,12 @@
       "description": "How my speaking volume changes with my excitement level.",
       "spec": "charts/volume-excitement.json",
       "thumb": "thumbs/volume-excitement.png"
+    },
+    {
+      "id": "interests-evolution",
+      "title": "Interests over Time",
+      "description": "How my main interests changed over time.",
+      "spec": "charts/volume-excitement.json",
+      "thumb": "thumbs/volume-excitement.png"
     }
   ]
