@@ -93,10 +93,6 @@
         "titleFontSize": 16,
         "titlePadding": 15,
         "labelPadding": 10,
-        "orient": "left",
-        "titleAngle": 0,
-        "titleX": -50,
-        "titleY": -15
       },
       "scale": {
         "domain": [0, 10]
