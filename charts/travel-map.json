@@ -42,7 +42,8 @@
             {"id": "558", "name": "Nicaragua", "first_visit": 2017, "all_visits": "2017"},
             {"id": "320", "name": "Guatemala", "first_visit": 2017, "all_visits": "2017"},
             {"id": "124", "name": "Canada", "first_visit": 2017, "all_visits": "2017"},
-            {"id": "784", "name": "United Arab Emirates", "first_visit": 2023, "all_visits": "2023"}
+            {"id": "784", "name": "United Arab Emirates", "first_visit": 2023, "all_visits": "2023"},
+            {"id": "300", "name": "Greece", "first_visit": 2017, "all_visits": "2017, 2019, 2022"}
           ]
         },
         "key": "id",
@@ -56,7 +57,11 @@
     "strokeWidth": 0.5
   },
   "encoding": {
-    "color": {
+    "fill": {
+      "condition": {
+        "test": "datum.first_visit == null",
+        "value": "#f0f0f0"
+      },
       "field": "first_visit",
       "type": "quantitative",
       "scale": {
@@ -68,20 +73,8 @@
         "title": "First Visit Year",
         "format": "d",
         "orient": "right",
-        "gradientLength": 200
-      }
-    },
-    "fillOpacity": {
-      "condition": {
-        "test": "datum.first_visit != null",
-        "value": 1
-      },
-      "value": 1
-    },
-    "fill": {
-      "condition": {
-        "test": "datum.first_visit == null",
-        "value": "#f0f0f0"
+        "gradientLength": 200,
+        "gradientThickness": 16
       }
     },
     "tooltip": [
@@ -95,8 +88,7 @@
       "labelFont": "Helvetica Neue, sans-serif",
       "titleFont": "Helvetica Neue, sans-serif",
       "labelFontSize": 12,
-      "titleFontSize": 14,
-      "gradientThickness": 16
+      "titleFontSize": 14
     }
   }
 } 
