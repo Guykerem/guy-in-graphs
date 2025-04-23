@@ -75,7 +75,8 @@
         "labelFontSize": 14,
         "titleFontSize": 16,
         "titlePadding": 15,
-        "labelPadding": 10
+        "labelPadding": 10,
+        "tickCount": 11
       },
       "scale": {
         "domain": [0, 10]
@@ -93,9 +94,14 @@
         "titleFontSize": 16,
         "titlePadding": 15,
         "labelPadding": 10,
+        "orient": "left",
+        "titleAngle": 0,
+        "titleX": -50,
+        "titleY": -15
       },
       "scale": {
-        "domain": [0, 10]
+        "domain": [0, 10],
+        "nice": true
       }
     }
   },
