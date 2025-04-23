@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Chart Title Here",
+    "text": "Evolution of Interests",
     "fontSize": 20,
     "font": "Helvetica Neue, sans-serif",
     "anchor": "middle",
@@ -12,19 +12,21 @@
   "height": 400,
   "padding": 20,
   "data": {
-    "values": [
-      {"x": 0, "y": 20, "category": "Series A"},
-      {"x": 25, "y": 45, "category": "Series A", "callout": "Important point A"},
-      {"x": 50, "y": 35, "category": "Series A"},
-      {"x": 75, "y": 60, "category": "Series A", "callout": "Peak value"},
-      {"x": 100, "y": 40, "category": "Series A"},
-      {"x": 0, "y": 30, "category": "Series B"},
-      {"x": 25, "y": 50, "category": "Series B"},
-      {"x": 50, "y": 70, "category": "Series B", "callout": "Important point B"},
-      {"x": 75, "y": 45, "category": "Series B"},
-      {"x": 100, "y": 25, "category": "Series B"}
-    ]
+    "url": "data/interests_evolution.csv"
   },
+  "transform": [
+    {
+      "fold": ["Science", "History", "Philosophy", "Video Games", "Art", "Psychology", "Movies (Storytelling)", "Technology"],
+      "as": ["Interest", "Value"]
+    },
+    {
+      "filter": "datum.Value != null"
+    },
+    {
+      "calculate": "datum.Age == 14 && datum.Interest == 'Video Games' ? 'Peak gaming interest (95%)' : datum.Age == 18 && datum.Interest == 'Psychology' ? 'Psychology becomes primary focus (85%)' : datum.Age == 31 && datum.Interest == 'Technology' ? 'Technology and career alignment (88%)' : null",
+      "as": "callout"
+    }
+  ],
   "layer": [
     {
       "mark": {
@@ -35,9 +37,9 @@
       },
       "encoding": {
         "x": {
-          "field": "x",
+          "field": "Age",
           "type": "quantitative",
-          "title": "Time Period (months)",
+          "title": "Age (years)",
           "axis": {
             "grid": false,
             "labelFont": "Helvetica Neue, sans-serif",
@@ -46,14 +48,14 @@
             "titleFontSize": 14,
             "titlePadding": 15,
             "labelPadding": 10,
-            "values": [0, 25, 50, 75, 100],
+            "values": [0, 8, 16, 24, 32],
             "format": ".0f"
           }
         },
         "y": {
-          "field": "y",
+          "field": "Value",
           "type": "quantitative",
-          "title": "Measurement (units)",
+          "title": "Interest Level (%)",
           "axis": {
             "grid": false,
             "labelFont": "Helvetica Neue, sans-serif",
@@ -67,10 +69,10 @@
           }
         },
         "color": {
-          "field": "category",
+          "field": "Interest",
           "type": "nominal",
           "scale": {
-            "range": ["#2f4b7c", "#f95d6a"]
+            "range": ["#2f4b7c", "#f95d6a", "#ff7c43", "#ffa600", "#8ac926", "#1982c4", "#6a4c93", "#52796f"]
           },
           "legend": {
             "title": null,
@@ -94,11 +96,12 @@
         "strokeWidth": 2
       },
       "encoding": {
-        "x": {"field": "x", "type": "quantitative"},
-        "y": {"field": "y", "type": "quantitative"},
+        "x": {"field": "Age", "type": "quantitative"},
+        "y": {"field": "Value", "type": "quantitative"},
         "tooltip": [
           {"field": "callout", "type": "nominal", "title": "Note"},
-          {"field": "y", "type": "quantitative", "title": "Value", "format": ".0f"}
+          {"field": "Interest", "type": "nominal"},
+          {"field": "Value", "type": "quantitative", "title": "Interest Level", "format": ".0f"}
         ]
       }
     }
