@@ -23,89 +23,68 @@
       "filter": "datum.Value != null"
     },
     {
-      "calculate": "datum.Age == 14 && datum.Interest == 'Video Games' ? 'Peak gaming interest (95%)' : datum.Age == 18 && datum.Interest == 'Psychology' ? 'Psychology becomes primary focus (85%)' : datum.Age == 31 && datum.Interest == 'Technology' ? 'Technology and career alignment (88%)' : null",
-      "as": "callout"
+      "calculate": "datum.Value / 100",
+      "as": "normalized_value"
     }
   ],
-  "layer": [
-    {
-      "mark": {
-        "type": "line",
-        "strokeWidth": 3,
-        "strokeCap": "round",
-        "strokeJoin": "round"
-      },
-      "encoding": {
-        "x": {
-          "field": "Age",
-          "type": "quantitative",
-          "title": "Age (years)",
-          "axis": {
-            "grid": false,
-            "labelFont": "Helvetica Neue, sans-serif",
-            "titleFont": "Helvetica Neue, sans-serif",
-            "labelFontSize": 12,
-            "titleFontSize": 14,
-            "titlePadding": 15,
-            "labelPadding": 10,
-            "values": [0, 8, 16, 24, 32],
-            "format": ".0f"
-          }
-        },
-        "y": {
-          "field": "Value",
-          "type": "quantitative",
-          "title": "Interest Level (%)",
-          "axis": {
-            "grid": false,
-            "labelFont": "Helvetica Neue, sans-serif",
-            "titleFont": "Helvetica Neue, sans-serif",
-            "labelFontSize": 12,
-            "titleFontSize": 14,
-            "titlePadding": 15,
-            "labelPadding": 10,
-            "values": [0, 25, 50, 75, 100],
-            "format": ".0f"
-          }
-        },
-        "color": {
-          "field": "Interest",
-          "type": "nominal",
-          "scale": {
-            "range": ["#2f4b7c", "#f95d6a", "#ff7c43", "#ffa600", "#8ac926", "#1982c4", "#6a4c93", "#52796f"]
-          },
-          "legend": {
-            "title": null,
-            "orient": "top",
-            "direction": "horizontal",
-            "labelFont": "Helvetica Neue, sans-serif",
-            "labelFontSize": 12,
-            "symbolSize": 100,
-            "symbolType": "stroke"
-          }
-        }
+  "encoding": {
+    "x": {
+      "field": "Age",
+      "type": "quantitative",
+      "title": "Age (years)",
+      "axis": {
+        "grid": false,
+        "labelFont": "Helvetica Neue, sans-serif",
+        "titleFont": "Helvetica Neue, sans-serif",
+        "labelFontSize": 12,
+        "titleFontSize": 14,
+        "titlePadding": 15,
+        "labelPadding": 10,
+        "values": [8, 12, 16, 20, 24, 28, 32],
+        "format": ".0f"
       }
     },
-    {
-      "transform": [{"filter": "datum.callout != null"}],
-      "mark": {
-        "type": "circle",
-        "size": 80,
-        "fill": "white",
-        "stroke": "#333",
-        "strokeWidth": 2
+    "y": {
+      "field": "normalized_value",
+      "type": "quantitative",
+      "title": "Interest Distribution",
+      "axis": {
+        "grid": false,
+        "labelFont": "Helvetica Neue, sans-serif",
+        "titleFont": "Helvetica Neue, sans-serif",
+        "labelFontSize": 12,
+        "titleFontSize": 14,
+        "titlePadding": 15,
+        "labelPadding": 10,
+        "format": ".0%"
       },
-      "encoding": {
-        "x": {"field": "Age", "type": "quantitative"},
-        "y": {"field": "Value", "type": "quantitative"},
-        "tooltip": [
-          {"field": "callout", "type": "nominal", "title": "Note"},
-          {"field": "Interest", "type": "nominal"},
-          {"field": "Value", "type": "quantitative", "title": "Interest Level", "format": ".0f"}
-        ]
+      "stack": "normalize"
+    },
+    "color": {
+      "field": "Interest",
+      "type": "nominal",
+      "scale": {
+        "range": ["#2f4b7c", "#f95d6a", "#ff7c43", "#ffa600", "#8ac926", "#1982c4", "#6a4c93", "#52796f"]
+      },
+      "legend": {
+        "title": null,
+        "orient": "top",
+        "direction": "horizontal",
+        "labelFont": "Helvetica Neue, sans-serif",
+        "labelFontSize": 12,
+        "symbolSize": 100
       }
-    }
-  ],
+    },
+    "tooltip": [
+      {"field": "Interest", "type": "nominal"},
+      {"field": "Value", "type": "quantitative", "title": "Interest Level", "format": ".0f"},
+      {"field": "Age", "type": "quantitative", "title": "Age", "format": ".0f"}
+    ]
+  },
+  "mark": {
+    "type": "bar",
+    "width": {"band": 0.7}
+  },
   "config": {
     "view": {
       "stroke": null,
